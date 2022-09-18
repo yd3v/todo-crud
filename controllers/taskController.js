@@ -1,20 +1,18 @@
-const jwt = require("jsonwebtoken")
 const taskModel = require("../models/taskModel")
-const config = require("../config.json")
+
 
 class taskController {
-
-
-
 
     static async create(req, res) {
         let res_ = {}
         const { title, description } = req.body
         const id = req.userId
+        const date = new Date().toLocaleDateString("pt-br")
         try {
             const task = await new taskModel({
                 userId: id,
                 title: title,
+                createDate: date,
                 description: description
             }).save()
 
@@ -51,26 +49,6 @@ class taskController {
         }
         res.json(res_)
     }
-
-    // static async view(req, res) {
-    //     let res_ = {}
-    //     const { id } = req.params
-
-    //     try {
-    //         const task = await taskModel.findById(id)
-    //         if (task) {
-    //             res_.success = true
-    //             res_.task = task
-    //         } else {
-    //             res_.success = false
-    //         }
-    //     } catch (error) {
-    //         res_.success = false
-    //         res_.error = error
-    //     }
-
-    //     res.json(res_)
-    // }
 
     static async delete(req, res) {
         let res_ = {}
