@@ -3,9 +3,15 @@ const mongoose = require("mongoose")
 const userSchema = mongoose.Schema({
     username: {
         type: String,
-        unique: true
+        unique: true,
+        min: 5,
+        max: 30
     },
-    password: String
+    password: {
+        type: String,
+        min: 8,
+        max: 30
+    }
 })
 
 module.exports = mongoose.model("User", userSchema)

@@ -10,7 +10,10 @@ const taskSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    createDate: String,
+    createDate: {
+        type: String,
+        default: new Date().toLocaleDateString("pt-br")
+    },
     deadline: String,
     category: String,
     userId: String

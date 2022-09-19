@@ -46,23 +46,37 @@ class userController {
         let res_ = {}
         const { username, password } = req.body
 
-        try {
-            const user = await new userModel({
-                username: username,
-                password: password
-            }).save()
-
-            if (user) {
-                res_.success = true
-                res_.user = user
-            } else {
-                res_.success = false
-            }
-        } catch (error) {
+        if (!username || !password) {
             res_.success = false
-            if (error.code == 11000) res_.error = "User already exists"
+            res_.error = "Missing username / password"
         }
+        else if (username.length < 5) {
+            res_.success = false
+            res_.error = "The 'username' field length must be >= 5"
+        } else if (password.length < 8) {
+            res_.success = false
+            res_.error = "The 'password' field length must be >= 8"
+        }
+        else {
+            try {
+                const user = await new userModel({
+                    username: username,
+                    password: password
+                }).save()
 
+                if (user) {
+                    res_.success = true
+                    res_.user = user
+                } else {
+                    res_.success = false
+                }
+            } catch (error) {
+                res_.success = false
+                if (error.code == 11000) res_.error = "User already exists"
+            }
+
+
+        }
         res.json(res_)
     }
 
