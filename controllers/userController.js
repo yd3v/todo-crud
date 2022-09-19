@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken")
 const userModel = require("../models/userModel")
-const config = require("../config.json")
+
 
 class userController {
 
@@ -11,8 +11,15 @@ class userController {
         if (!username || !password) {
             res_.success = false
             res_.error = "Missing username / password"
-
         }
+        else if (username.length < 5) {
+            res_.success = false
+            res_.error = "The 'username' field length must be >= 5"
+        } else if (password.length < 8) {
+            res_.success = false
+            res_.error = "The 'password' field length must be >= 8"
+        }
+
         else {
 
             let auth = await userModel.findOne({
@@ -22,7 +29,7 @@ class userController {
 
 
             if (auth) {
-                var token = jwt.sign({ id: auth._id }, config.privateKey, { expiresIn: "30min" })
+                var token = jwt.sign({ id: auth._id }, process.env.PRIVATE_KEY, { expiresIn: "30min" })
                 res_.success = true
                 res_.token = token
                 res_.userId = auth._id

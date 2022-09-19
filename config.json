@@ -1,7 +1,0 @@
-{
-    "port": 8080,
-    "db": {
-        "uri": "mongodb+srv://thlsn:imhaxor@cluster0.0gbbplw.mongodb.net/todo"
-    },
-    "privateKey": "53cr37"
-}
