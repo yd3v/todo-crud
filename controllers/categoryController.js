@@ -1,6 +1,6 @@
 const categoryModel = require("../models/categoryModel")
 
-class categoryController {
+class CategoryController {
     static async create(req, res) {
         let res_ = {}
         const { title } = req.body
@@ -102,4 +102,4 @@ class categoryController {
     }
 
 }
-module.exports = categoryController
+module.exports = CategoryController

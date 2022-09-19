@@ -1,7 +1,7 @@
 const taskModel = require("../models/taskModel")
 
 
-class taskController {
+class TaskController {
 
     static async create(req, res) {
         let res_ = {}
@@ -105,4 +105,4 @@ class taskController {
     }
 
 }
-module.exports = taskController
+module.exports = TaskController

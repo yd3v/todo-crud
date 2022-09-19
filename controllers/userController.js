@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken")
 const userModel = require("../models/userModel")
 
 
-class userController {
+class UserController {
 
     static async auth(req, res) {
         let res_ = {}
@@ -160,4 +160,4 @@ class userController {
         res.json(res_)
     }
 }
-module.exports = userController
+module.exports = UserController

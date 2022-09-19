@@ -1,10 +1,10 @@
 const router = require("express").Router()
 const auth = require("../middlewares/authentication")
-const categoryController = require("../controllers/categoryController")
+const CategoryController = require("../controllers/categoryController")
 
-router.post("/create", auth, categoryController.create)
-router.get("/", auth, categoryController.view)
-router.patch("/:id/update", auth, categoryController.update)
-router.delete("/:id/delete", auth, categoryController.delete)
+router.post("/create", auth, CategoryController.create)
+router.get("/", auth, CategoryController.view)
+router.patch("/:id/update", auth, CategoryController.update)
+router.delete("/:id/delete", auth, CategoryController.delete)
 
 module.exports = router
