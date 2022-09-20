@@ -5,6 +5,7 @@ const taskRouter = require("./routes/taskRoute")
 const userRouter = require("./routes/userRoute")
 const categoryRouter = require("./routes/categoryRoute")
 
+const PORT = process.env.PORT || 8080;
 async function main() {
     try {
         await mongoose.connect(process.env.DB_URI)
@@ -19,8 +20,8 @@ async function main() {
     app.use("/tasks", taskRouter)
     app.use("/category", categoryRouter)
 
-    app.listen(process.env.PORT | 8080, "0.0.0.0", async () => {
-        console.log(`Listening ${process.env.PORT}`)
+    app.listen(PORT, "0.0.0.0", () => {
+        console.log(`Listening ${PORT}`)
     })
 }
 main().catch(err => console.log(err))
