@@ -1,5 +1,8 @@
 const taskModel = require("../models/taskModel")
 
+String.prototype.clean = () => {
+    return this.replace("<", "&lt;").replace(">", "&gt;")
+}
 
 class TaskController {
 
@@ -11,10 +14,10 @@ class TaskController {
         try {
             const task = await new taskModel({
                 userId: id,
-                title: title,
-                createDate: date,
-		deadline: deadline,
-                description: description
+                title: title.clean(),
+                createDate: date.clean(),
+                deadline: deadline.clean(),
+                description: description.clean()
             }).save()
 
             if (task) {
@@ -88,8 +91,8 @@ class TaskController {
             },
                 {
                     $set: {
-                        title: title,
-                        description: description
+                        title: title.clean(),
+                        description: description.clean()
                     }
                 })
 

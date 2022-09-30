@@ -1,6 +1,9 @@
 const jwt = require("jsonwebtoken")
 const userModel = require("../models/userModel")
+String.prototype.clean = function () {
 
+    return this.valueOf().replace("<", "&lt;").replace(">", "&gt;")
+}
 
 class UserController {
 
@@ -60,8 +63,8 @@ class UserController {
         else {
             try {
                 const user = await new userModel({
-                    username: username,
-                    password: password
+                    username: username.clean(),
+                    password: password.clean()
                 }).save()
 
                 if (user) {
@@ -133,8 +136,8 @@ class UserController {
             },
                 {
                     $set: {
-                        username: username,
-                        password: password
+                        username: username.clean(),
+                        password: password.clean()
                     }
                 })
 
