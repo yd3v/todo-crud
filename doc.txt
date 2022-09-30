@@ -1,0 +1,18 @@
+POST	/user/create [username, password]
+POST	/user/auth [username, password]
+GET	/user (auth)
+DELETE	/user/:id (auth)
+PATCH	/user/:id [username, password] (auth)
+
+POST	/tasks/create [title, description, deadline] (auth)
+GET	/tasks (auth)
+PATCH	/tasks/:id (auth)
+DELETE	/tasks/id  (auth)
+
+POST	/categories/create [title] (auth)
+GET	/categories (auth)
+PATCH	/categories/:id (auth)
+DELETE	/categories/:id (auth)
+
+
+

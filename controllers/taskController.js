@@ -5,7 +5,7 @@ class TaskController {
 
     static async create(req, res) {
         let res_ = {}
-        const { title, description } = req.body
+        const { title, description, deadline } = req.body
         const id = req.userId
         const date = new Date().toLocaleDateString("pt-br")
         try {
@@ -13,6 +13,7 @@ class TaskController {
                 userId: id,
                 title: title,
                 createDate: date,
+		deadline: deadline,
                 description: description
             }).save()
 
