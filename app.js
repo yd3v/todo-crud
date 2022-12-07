@@ -21,7 +21,7 @@ async function main() {
     app.use(express.urlencoded());
     app.use(cors())
     app.use(multer().array())
-    app.use("/", express.static(__dirname + "/todo-list"))
+    app.use("/", express.static(__dirname + "/projeto-Mago"))
 
     app.use("/api/user", userRouter)
     app.use("/api/tasks", taskRouter)
